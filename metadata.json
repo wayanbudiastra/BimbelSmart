@@ -1,0 +1,5 @@
+{
+  "name": "BimbelSmart - Platform Pembelajaran Digital",
+  "description": "Sistem Manajemen Pembelajaran (LMS) Bimbel dengan hak akses Superadmin, Guru, dan Siswa.",
+  "requestFramePermissions": []
+}

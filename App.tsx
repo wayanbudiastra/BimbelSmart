@@ -48,7 +48,7 @@ const App: React.FC = () => {
 
   return (
     <DashboardLayout user={currentUser} onLogout={handleLogout} activeTab={activeTab} setActiveTab={setActiveTab}>
-      {currentUser.role === 'superadmin' && <AdminDashboard />}
+      {currentUser.role === 'superadmin' && <AdminDashboard activeTab={activeTab} />}
       {currentUser.role === 'guru' && <GuruDashboard activeTab={activeTab} />}
       {currentUser.role === 'siswa' && <SiswaDashboard />}
     </DashboardLayout>

@@ -7,12 +7,20 @@ interface DashboardLayoutProps {
   user: User;
   onLogout: () => void;
   children: React.ReactNode;
+  activeTab?: string;
+  setActiveTab?: (tab: string) => void;
 }
 
-export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ user, onLogout, children }) => {
+export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ user, onLogout, children, activeTab, setActiveTab }) => {
   return (
     <div className="flex h-screen bg-slate-50 overflow-hidden">
-      <Sidebar role={user.role} userName={user.name} onLogout={onLogout} />
+      <Sidebar 
+        role={user.role} 
+        userName={user.name} 
+        onLogout={onLogout} 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab} 
+      />
       
       <div className="flex-1 flex flex-col overflow-hidden">
         <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 z-10">

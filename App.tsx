@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LoginForm } from './components/LoginForm';
 import { BackgroundDecorations } from './components/BackgroundDecorations';
 import { DashboardLayout } from './layouts/DashboardLayout';
@@ -10,9 +10,9 @@ import { User, UserRole } from './types';
 
 const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [activeTab, setActiveTab] = useState('overview');
 
   const handleLogin = (role: UserRole) => {
-    // Simulasi data user berdasarkan role yang dipilih di form
     const mockUser: User = {
       id: Math.random().toString(36).substr(2, 9),
       name: role === 'superadmin' ? 'Admin Utama' : role === 'guru' ? 'Ibu Ratih' : 'Ananda Putra',
@@ -20,6 +20,7 @@ const App: React.FC = () => {
       role: role
     };
     setCurrentUser(mockUser);
+    setActiveTab('overview');
   };
 
   const handleLogout = () => {
@@ -46,9 +47,9 @@ const App: React.FC = () => {
   }
 
   return (
-    <DashboardLayout user={currentUser} onLogout={handleLogout}>
+    <DashboardLayout user={currentUser} onLogout={handleLogout} activeTab={activeTab} setActiveTab={setActiveTab}>
       {currentUser.role === 'superadmin' && <AdminDashboard />}
-      {currentUser.role === 'guru' && <GuruDashboard />}
+      {currentUser.role === 'guru' && <GuruDashboard activeTab={activeTab} />}
       {currentUser.role === 'siswa' && <SiswaDashboard />}
     </DashboardLayout>
   );
